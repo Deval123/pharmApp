@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Ordonance" table="ordonance">
+    <indexes>
+      <index name="IDX_99240B9C54A4CB53" columns="personelEts_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="UNIQ_99240B9C62FF6CDF" columns="consultation_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="contenu" type="text" column="contenu" length="0" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="personelets" target-entity="PersonelEts" fetch="LAZY">
+      <join-columns>
+        <join-column name="personelEts_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="consultation" target-entity="Consultation" fetch="LAZY">
+      <join-columns>
+        <join-column name="consultation_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

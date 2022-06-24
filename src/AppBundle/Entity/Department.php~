@@ -1,0 +1,49 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Department
+ *
+ * @ORM\Table(name="department", indexes={@ORM\Index(name="IDX_CD1DE18A98260155", columns={"region_id"})})
+ * @ORM\Entity
+ */
+class Department
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chef_lieu", type="string", length=255, nullable=false)
+     */
+    private $chefLieu;
+
+    /**
+     * @var \Regions
+     *
+     * @ORM\ManyToOne(targetEntity="Regions")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * })
+     */
+    private $region;
+
+
+}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Dashboard</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ path('homepage') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    <h1>Pharmacies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Sigle</th>
+                <th>Datecreation</th>
+                <th>Heureouverture</th>
+                <th>Heurefermeture</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Filename</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pharmacy in pharmacies %}
+            <tr>
+                <td><a href="{{ path('pharmacy_show', { 'id': pharmacy.id }) }}">{{ pharmacy.id }}</a></td>
+                <td>{{ pharmacy.name }}</td>
+                <td>{{ pharmacy.sigle }}</td>
+                <td>{% if pharmacy.dateCreation %}{{ pharmacy.dateCreation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if pharmacy.heureOuverture %}{{ pharmacy.heureOuverture|date('H:i:s') }}{% endif %}</td>
+                <td>{% if pharmacy.heureFermeture %}{{ pharmacy.heureFermeture|date('H:i:s') }}{% endif %}</td>
+                <td>{{ pharmacy.longitude }}</td>
+                <td>{{ pharmacy.latitude }}</td>
+                <td>{{ pharmacy.filename }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pharmacy_show', { 'id': pharmacy.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pharmacy_edit', { 'id': pharmacy.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pharmacy_new') }}">Create a new pharmacy</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

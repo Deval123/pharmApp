@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Traitement" table="traitement">
+    <indexes>
+      <index name="IDX_2A356D27F531F4C5" columns="hospitalisation_id"/>
+      <index name="IDX_2A356D2754A4CB53" columns="personelEts_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="contenu" type="text" column="contenu" length="0" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datecreate" type="datetime" column="datecreate" nullable="true"/>
+    <many-to-one field="personelets" target-entity="PersonelEts" fetch="LAZY">
+      <join-columns>
+        <join-column name="personelEts_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="hospitalisation" target-entity="Hospitalisation" fetch="LAZY">
+      <join-columns>
+        <join-column name="hospitalisation_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

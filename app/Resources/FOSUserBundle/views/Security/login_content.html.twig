@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
+
+    <title>Login  | just for Admin user</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="{{ asset('css/bootstrap-theme.css') }}" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="{{ asset('css/elegant-icons-style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('js/html5shiv.js') }}"></script>
+    <script src="{{ asset('js/respond.min.js') }}"></script>
+    <![endif]-->
+</head>
+
+<body class="login-img3-body">
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<div class="container">
+
+    <form class="login-form"  action="{{ path("fos_user_security_check") }}" method="post" >
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            <div class="input-group">
+                <span class="input-group-addon" ><i class="icon_profile"></i>{{ 'security.login.username'|trans }}</span>
+                <input type="text" class="form-control" placeholder="Username" id="username" name="_username" value="{{ last_username }}" required="required" autofocus>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i>{{ 'security.login.password'|trans }}</span>
+                <input type="password" class="form-control" placeholder="Password" id="password" name="_password" required="required">
+            </div>
+
+            <label class="checkbox">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                <span class="pull-right"> <a href="{{ path('fos_user_resetting_request') }}"> Forgot Password?</a></span>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-info btn-lg btn-block" type="submit">Signup</a>
+        </div>
+
+
+    </form>
+    <div class="text-right">
+        <div class="credits">
+            <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+            -->
+            <a href="https://www.erecycling.com/">RAPMIS (Réseau des Acteurs pour la Performance en Milieu Scolaire)</a>
+            by <a href="https://##########.com/">HABITECH SOLUTIONS <strong>&</strong>SERVICES </a>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

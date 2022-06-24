@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Pharmacie" table="pharmacie">
+    <indexes>
+      <index name="IDX_5FC194348BAC62AF" columns="city_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="localisation" type="string" column="localisation" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tel" type="string" column="tel" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="sigle" type="string" column="sigle" length="30" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateCreation" type="date" column="date_creation" nullable="true"/>
+    <field name="heureOuverture" type="time" column="heure_ouverture" nullable="true"/>
+    <field name="heureFermeture" type="time" column="heure_fermeture" nullable="true"/>
+    <field name="longitude" type="string" column="longitude" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="latitude" type="string" column="latitude" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="filename" type="string" column="filename" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="garde" type="boolean" column="garde" nullable="true"/>
+    <many-to-one field="city" target-entity="City" fetch="LAZY">
+      <join-columns>
+        <join-column name="city_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Dashboard</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ path('homepage') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    <h1>Pharmacists list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fonction</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Telephone</th>
+                <th>Datenais</th>
+                <th>Filename</th>
+                <th>Datecreation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pharmacist in pharmacists %}
+            <tr>
+                <td><a href="{{ path('pharmacists_show', { 'id': pharmacist.id }) }}">{{ pharmacist.id }}</a></td>
+                <td>{{ pharmacist.fonction }}</td>
+                <td>{{ pharmacist.name }}</td>
+                <td>{{ pharmacist.surname }}</td>
+                <td>{{ pharmacist.telephone }}</td>
+                <td>{% if pharmacist.dateNais %}{{ pharmacist.dateNais|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ pharmacist.filename }}</td>
+                <td>{% if pharmacist.dateCreation %}{{ pharmacist.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pharmacists_show', { 'id': pharmacist.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pharmacists_edit', { 'id': pharmacist.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pharmacists_new') }}">Create a new pharmacist</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

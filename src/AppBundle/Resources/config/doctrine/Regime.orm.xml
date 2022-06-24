@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Regime" table="regime">
+    <indexes>
+      <index name="patients_id" columns="patients_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="typeRegime" type="string" column="type_regime" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datedebut" type="datetime" column="datedebut" nullable="false"/>
+    <field name="poidsdepart" type="float" column="poidsDepart" precision="10" scale="0" nullable="false"/>
+    <field name="imc" type="string" column="imc" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="restrictions" type="text" column="restrictions" length="0" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="taille" type="float" column="taille" precision="10" scale="0" nullable="true"/>
+    <field name="natureregime" type="string" column="natureRegime" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="alimentationrecommande" type="text" column="alimentationRecommande" length="0" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="typetraitement" type="text" column="typeTraitement" length="0" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datefin" type="datetime" column="dateFin" nullable="false"/>
+    <many-to-one field="patients" target-entity="Patients" fetch="LAZY">
+      <join-columns>
+        <join-column name="patients_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

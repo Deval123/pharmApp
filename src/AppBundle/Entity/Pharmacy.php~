@@ -1,0 +1,101 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pharmacy
+ *
+ * @ORM\Table(name="pharmacy", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_D6C15C1E1FDF4367", columns={"pharmacist_id"})}, indexes={@ORM\Index(name="IDX_D6C15C1E8BAC62AF", columns={"city_id"})})
+ * @ORM\Entity
+ */
+class Pharmacy
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="sigle", type="string", length=30, nullable=true)
+     */
+    private $sigle;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="date_creation", type="date", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_ouverture", type="time", nullable=false)
+     */
+    private $heureOuverture;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_fermeture", type="time", nullable=false)
+     */
+    private $heureFermeture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=50, nullable=false)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=50, nullable=false)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filename", type="string", length=255, nullable=false)
+     */
+    private $filename;
+
+    /**
+     * @var \Pharmacists
+     *
+     * @ORM\ManyToOne(targetEntity="Pharmacists")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pharmacist_id", referencedColumnName="id")
+     * })
+     */
+    private $pharmacist;
+
+    /**
+     * @var \City
+     *
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * })
+     */
+    private $city;
+
+
+}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Dashboard</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ path('homepage') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    <h1>Pharmacy</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pharmacy.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ pharmacy.name }}</td>
+            </tr>
+            <tr>
+                <th>Sigle</th>
+                <td>{{ pharmacy.sigle }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if pharmacy.dateCreation %}{{ pharmacy.dateCreation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heureouverture</th>
+                <td>{% if pharmacy.heureOuverture %}{{ pharmacy.heureOuverture|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Heurefermeture</th>
+                <td>{% if pharmacy.heureFermeture %}{{ pharmacy.heureFermeture|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ pharmacy.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ pharmacy.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ pharmacy.filename }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pharmacy_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pharmacy_edit', { 'id': pharmacy.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

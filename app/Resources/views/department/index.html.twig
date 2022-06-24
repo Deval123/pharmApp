@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Dashboard</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ path('homepage') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    <h1>Departments list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Cheflieu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for department in departments %}
+            <tr>
+                <td><a href="{{ path('department_show', { 'id': department.id }) }}">{{ department.id }}</a></td>
+                <td>{{ department.name }}</td>
+                <td>{{ department.chefLieu }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('department_show', { 'id': department.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('department_edit', { 'id': department.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('department_new') }}">Create a new department</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

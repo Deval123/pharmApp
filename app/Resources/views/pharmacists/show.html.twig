@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Dashboard</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ path('homepage') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    <h1>Pharmacist</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pharmacist.id }}</td>
+            </tr>
+            <tr>
+                <th>Fonction</th>
+                <td>{{ pharmacist.fonction }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ pharmacist.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ pharmacist.surname }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ pharmacist.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Datenais</th>
+                <td>{% if pharmacist.dateNais %}{{ pharmacist.dateNais|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ pharmacist.filename }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if pharmacist.dateCreation %}{{ pharmacist.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pharmacists_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pharmacists_edit', { 'id': pharmacist.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

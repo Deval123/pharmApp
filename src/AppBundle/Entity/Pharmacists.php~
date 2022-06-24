@@ -1,0 +1,84 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pharmacists
+ *
+ * @ORM\Table(name="pharmacists", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_9765AA22A76ED395", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Pharmacists
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="fonction", type="string", length=60, nullable=true)
+     */
+    private $fonction;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=100, nullable=false)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=60, nullable=false)
+     */
+    private $telephone;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="date_nais", type="date", nullable=true)
+     */
+    private $dateNais;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filename", type="string", length=255, nullable=false)
+     */
+    private $filename;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}

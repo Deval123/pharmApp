@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Bilan" table="bilan">
+    <indexes>
+      <index name="patients_id" columns="patients_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="intitule" type="text" column="intitule" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="temperature" type="float" column="temperature" precision="10" scale="0" nullable="true"/>
+    <field name="taille" type="float" column="taille" precision="10" scale="0" nullable="true"/>
+    <field name="tension" type="float" column="tension" precision="10" scale="0" nullable="true"/>
+    <field name="datecreate" type="datetime" column="dateCreate" nullable="true"/>
+    <field name="poidsactuel" type="float" column="poidsActuel" precision="10" scale="0" nullable="true"/>
+    <field name="poidsnormal" type="float" column="poidsNormal" precision="10" scale="0" nullable="true"/>
+    <field name="imc" type="float" column="imc" precision="10" scale="0" nullable="true"/>
+    <field name="tgc" type="float" column="tgc" precision="10" scale="0" nullable="true"/>
+    <field name="massemineraleosseuse" type="float" column="masseMinEraleOsseuse" precision="10" scale="0" nullable="true"/>
+    <field name="pourcentageeau" type="float" column="pourcentageEau" precision="10" scale="0" nullable="true"/>
+    <field name="massemusculaire" type="float" column="masseMusculaire" precision="10" scale="0" nullable="true"/>
+    <field name="evaluationsihouette" type="float" column="evaluationSihouette" precision="10" scale="0" nullable="true"/>
+    <field name="tgviscerale" type="float" column="tgViscerale" precision="10" scale="0" nullable="true"/>
+    <many-to-one field="patients" target-entity="Patients" fetch="LAZY">
+      <join-columns>
+        <join-column name="patients_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

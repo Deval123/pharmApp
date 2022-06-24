@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Dashboard</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{ path('homepage') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    <h1>Sick</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sick.id }}</td>
+            </tr>
+            <tr>
+                <th>Datecreate</th>
+                <td>{% if sick.dateCreate %}{{ sick.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ sick.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ sick.surname }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ sick.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Datenais</th>
+                <td>{% if sick.dateNais %}{{ sick.dateNais|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ sick.filename }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sick_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('sick_edit', { 'id': sick.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

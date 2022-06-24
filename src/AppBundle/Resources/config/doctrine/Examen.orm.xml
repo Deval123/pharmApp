@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Examen" table="examen">
+    <indexes>
+      <index name="IDX_514C8FEC54A4CB53" columns="personelEts_id"/>
+      <index name="IDX_514C8FECCEC3FD2F" columns="patients_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="UNIQ_514C8FEC62FF6CDF" columns="consultation_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nature" type="string" column="nature" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="contenu" type="text" column="contenu" length="0" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="image" type="string" column="image" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lieuexamen" type="string" column="lieuExamen" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datecreate" type="datetime" column="datecreate" nullable="true"/>
+    <field name="cout" type="float" column="cout" precision="10" scale="0" nullable="true"/>
+    <many-to-one field="personelets" target-entity="PersonelEts" fetch="LAZY">
+      <join-columns>
+        <join-column name="personelEts_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="consultation" target-entity="Consultation" fetch="LAZY">
+      <join-columns>
+        <join-column name="consultation_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="patients" target-entity="Patients" fetch="LAZY">
+      <join-columns>
+        <join-column name="patients_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
